@@ -1,4 +1,4 @@
-// index.js
+// app.js
 
 const express = require('express');
 const serverless = require("serverless-http");
@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Rute-rute API pengguna
-const usersRoute = require('./routes/users');
-const authRoute = require('./routes/auth');
+const usersRoute = require('./src/routes/users');
+const authRoute = require('./src/routes/auth');
 app.use('/users', usersRoute);
 app.use("/auth", authRoute)
 
@@ -29,6 +29,3 @@ app.use("/auth", authRoute)
 app.listen(port, () => {
   console.log(`Server berjalan di http://localhost:${port}`);
 });
-
-module.exports = app;
-module.exports.handler = serverless(app);
