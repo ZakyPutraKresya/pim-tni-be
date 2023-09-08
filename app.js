@@ -5,7 +5,7 @@ const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const cors = require('cors'); // Import middleware CORS
-const port = 8129; // Port
+const port = 3000; // Port
 
 app.use(cors())
 app.use(express.json());
@@ -20,9 +20,9 @@ app.use(express.static('public'));
 
 // Rute-rute API pengguna
 const usersRoute = require('./routes/users');
-const authRoute = require('./routes/auth');
+// const authRoute = require('./routes/auth');
 app.use('/users', usersRoute);
-app.use("/auth", authRoute)
+// app.use("/auth", authRoute)
 
 // Jalankan server
 app.listen(port, () => {

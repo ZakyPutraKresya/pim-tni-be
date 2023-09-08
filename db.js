@@ -3,10 +3,10 @@
 const { Pool } = require('pg');
 
 const pool = new Pool({
-  user: 'default',
-  host: 'ep-little-bread-96812048-pooler.us-east-1.postgres.vercel-storage.com',
-  database: 'verceldb',
-  password: 'Vms6rtl7ODpw',
+  user: 'uv7psmzz0ikflqglagh9',
+  host: 'bksnmpkwrteg7lwulccx-postgresql.services.clever-cloud.com',
+  database: 'bksnmpkwrteg7lwulccx',
+  password: 'xeemT9PDaaHGfXjKB6pgC92YSC0BGk',
 });
 
 module.exports = pool;
