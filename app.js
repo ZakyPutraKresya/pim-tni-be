@@ -1,6 +1,7 @@
 // index.js
 
 const express = require('express');
+const serverless = require("serverless-http");
 const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
@@ -28,3 +29,6 @@ app.use("/auth", authRoute)
 app.listen(port, () => {
   console.log(`Server berjalan di http://localhost:${port}`);
 });
+
+module.exports = app;
+module.exports.handler = serverless(app);
