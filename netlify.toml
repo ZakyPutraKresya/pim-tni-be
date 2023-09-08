@@ -1,2 +1,9 @@
 [build]
-  functions = "api/"
+  functions = "/"
+[dev]
+  targetPort = 3000
+[[redirects]]
+  from = "/*"
+  to = "/.netlify/functions/app/:splat"
+  status = 200
+  force = true

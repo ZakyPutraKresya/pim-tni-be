@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken'); // Import library JWT
 const pool = require('../db');
 const { JWT_SECRET } = process.env; // Anda perlu mengatur variabel lingkungan untuk JWT_SECRET

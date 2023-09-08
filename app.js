@@ -6,7 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const cors = require('cors'); // Import middleware CORS
-const port = 8124; // Port
+const port = 3000; // Port
 
 app.use(cors())
 app.use(express.json());
@@ -29,10 +29,10 @@ app.get('/', (req, res) => {
   res.send('Hello from the Express API at the root domain!');
 });
 
-// Jalankan server
-app.listen(port, () => {
-  console.log(`Server berjalan di http://localhost:${port}`);
-});
+// // Jalankan server
+// app.listen(port, () => {
+//   console.log(`Server berjalan di http://localhost:${port}`);
+// });
 
 
 module.exports = app;
