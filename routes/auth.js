@@ -39,7 +39,7 @@ router.post('/login', async (req, res) => {
         [user.rows[0].id]
       );
 
-      res.status(200).json({ token: token });
+      res.status(200).json({ token: token, username: username });
     } else {
       res.status(401).json({ message: 'Nama pengguna atau kata sandi salah.' });
     }
