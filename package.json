@@ -1,29 +1,41 @@
 {
   "name": "pim-tni-be",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "scripts": {
     "dev": "node app.js",
-    "start": "./node_modules/.bin/netlify-lambda serve src",
-    "build": "./node_modules/.bin/netlify-lambda build src"
+    "start": "netlify-lambda serve src",
+    "build": "netlify-lambda build src"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@vercel/postgres": "^0.4.1",
+    "aws-sdk": "^2.1453.0",
     "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",
+    "mock-aws-s3": "^4.0.2",
     "netlify-lambda": "^2.0.16",
+    "nock": "^13.3.3",
     "pg": "^8.11.3",
+    "react-scripts": "^5.0.1",
     "serverless-http": "^3.2.0"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.4.9"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZakyPutraKresya/pim-tni-be.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZakyPutraKresya/pim-tni-be/issues"
+  },
+  "homepage": "https://github.com/ZakyPutraKresya/pim-tni-be#readme",
+  "description": ""
 }
