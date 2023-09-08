@@ -20,8 +20,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static('public'));
 
 // Rute-rute API pengguna
-const usersRoute = require('./src/routes/users');
-const authRoute = require('./src/routes/auth');
+const usersRoute = require('./routes/users');
+const authRoute = require('./routes/auth');
 app.use('/users', usersRoute);
 app.use("/auth", authRoute)
 
