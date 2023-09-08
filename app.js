@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 require('dotenv').config();
 const cors = require('cors'); // Import middleware CORS
 const port = 2900; // Port
+const path = require('path');
 
 app.use(cors())
 app.use(express.json());
@@ -17,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //form-urlencoded
 
 // for parsing multipart/form-data
-app.use(express.static('public'));
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Rute-rute API pengguna
 const usersRoute = require('./routes/users');
