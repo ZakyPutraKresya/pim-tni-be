@@ -26,13 +26,8 @@ app.use('/users', usersRoute);
 app.use("/auth", authRoute)
 // Rute untuk akar domain
 app.get('/', (req, res) => {
-  res.send('Hello from the Express API at the root domain!');
+  res.status(200).json({ message: 'Pusat Informasi Maritim API' });
 });
-
-// // Jalankan server
-// app.listen(port, () => {
-//   console.log(`Server berjalan di http://localhost:${port}`);
-// });
 
 
 module.exports = app;
