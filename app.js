@@ -6,7 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const cors = require('cors'); // Import middleware CORS
-const port = 3000; // Port
+const port = 2900; // Port
 
 app.use(cors())
 app.use(express.json());
@@ -30,6 +30,10 @@ app.use("/images", imagesRoute)
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Pusat Informasi Maritim API' });
 });
+
+app.listen(port, (req, res) => {
+  console.log("Running on port " + port)
+})
 
 
 module.exports = app;

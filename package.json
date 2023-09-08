@@ -3,9 +3,7 @@
   "version": "1.0.0",
   "main": "app.js",
   "scripts": {
-    "dev": "node app.js",
-    "start": "netlify-lambda serve src",
-    "build": "netlify-lambda build src"
+    "dev": "node app.js"
   },
   "keywords": [],
   "author": "",
