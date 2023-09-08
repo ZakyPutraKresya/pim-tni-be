@@ -7,7 +7,7 @@ const pool = require('../db');
 // Menampilkan semua pengguna
 router.get('/', async (req, res) => {
   try {
-    const users = await pool.query('CREATE TABLE app_images_pim ( id SERIAL, name varchar(255), url TEXT, created_by varchar(255), ctime timestamps default NOW() );');
+    const users = await pool.query('SELECT * FROM app_images_pim');
     res.json(users.rows);
   } catch (error) {
     console.error(error);
