@@ -12,3 +12,5 @@ router.get('/slideshow', async (req, res) => {
     }
   });
   
+
+module.exports = router;
