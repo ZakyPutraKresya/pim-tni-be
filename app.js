@@ -22,8 +22,10 @@ app.use(express.static('public'));
 // Rute-rute API pengguna
 const usersRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
+const imagesRoute = require('./routes/images');
 app.use('/users', usersRoute);
-app.use("/auth", authRoute)
+app.use("/auth", authRoute);
+app.use("/images", imagesRoute)
 // Rute untuk akar domain
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Pusat Informasi Maritim API' });
