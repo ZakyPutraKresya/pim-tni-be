@@ -20,9 +20,9 @@ app.use(express.static('public'));
 
 // Rute-rute API pengguna
 const usersRoute = require('./routes/users');
-// const authRoute = require('./routes/auth');
+const authRoute = require('./routes/auth');
 app.use('/users', usersRoute);
-// app.use("/auth", authRoute)
+app.use("/auth", authRoute)
 
 // Jalankan server
 app.listen(port, () => {
