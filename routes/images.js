@@ -12,7 +12,7 @@ router.use(express.urlencoded({ extended: true }));
 
 router.get("/slideshow", async (req, res) => {
   try {
-    const users = await pool.query("SELECT * FROM app_slideshow");
+    const users = await pool.query("SELECT * FROM app_slideshow ORDER BY id ASC");
     res.json(users.rows);
   } catch (error) {
     console.error(error);
