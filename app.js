@@ -31,6 +31,10 @@ app.use("/images", imagesRoute)
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Pusat Informasi Maritim API' });
 });
+app.use((req, res, next) => {
+  res.status(500).send('Route Not Found');
+});
+
 
 app.listen(port, (req, res) => {
   console.log("Running on port " + port)
