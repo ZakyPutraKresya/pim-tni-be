@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
   res.status(200).json({ message: 'Pusat Informasi Maritim API' });
 });
 app.use((req, res, next) => {
-  res.status(500).send('Route Not Found');
+  res.status(500).json({ message: 'Route not found'})
 });
 
 
