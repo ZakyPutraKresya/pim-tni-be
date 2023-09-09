@@ -24,25 +24,21 @@ router.post("/upload", async (req, res) => {
   
     const { fileName, author, id } = req.body;
     try {
-       // Mengambil koneksi dari pool
-       const connection = await pool.getConnection();
-
-       // Query untuk mengupdate data di tabel app_slideshow
        const query = `
          UPDATE app_slideshow
-         SET url = ?,
-             author = ?,
+         SET url = $1,
+             author = $2,
              data_time = NOW()
-         WHERE id = ?;
+         WHERE id = $3;
        `;
    
        // Eksekusi query dengan parameter yang diambil dari body request
-       await connection.execute(query, [fileName, author, id]);
+       await pool.query(query, [fileName, author, id]);
    
        res.status(200).json({ message: 'Data berhasil diupdate.' });
       } catch (error) {
         console.error(error);
-        res.status(500).json({ message: 'Terjadi kesalahan server.' });
+        res.status(500).json({ message: 'Internal Server Error' });
       }
 });
 
