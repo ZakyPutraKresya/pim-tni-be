@@ -39,9 +39,6 @@ router.post("/upload", async (req, res) => {
        // Eksekusi query dengan parameter yang diambil dari body request
        await connection.execute(query, [fileName, author, id]);
    
-       // Mengembalikan koneksi ke pool
-       connection.release();
-   
        res.status(200).json({ message: 'Data berhasil diupdate.' });
       } catch (error) {
         console.error(error);
