@@ -59,7 +59,7 @@ app.get("/dashboard", async (req, res) => {
   }
 });
 
-app.post("/dashboard", upload.single("file"), (req, res) => {
+app.post("/dashboard", (req, res) => {
   // if (!req.file) {
   //   return res.status(400).json({ error: "Tidak ada file yang diunggah" });
   // }
@@ -67,7 +67,7 @@ app.post("/dashboard", upload.single("file"), (req, res) => {
   // Dapatkan data 'author' dari FormData
   const title = req.body.title;
   const description = req.body.description;
-  const filename = "/uploads/" + req.file.filename; // Nama file yang diunggah
+  // const filename = "/uploads/" + req.file.filename; // Nama file yang diunggah
 
   // Update data di tabel app_slideshow
   const query = `
