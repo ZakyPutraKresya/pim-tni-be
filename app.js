@@ -31,6 +31,18 @@ app.use("/images", imagesRoute)
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Pusat Informasi Maritim API' });
 });
+
+app.get("/dashboard", async (req, res) => {
+  try {
+    const users = await pool.query(
+      "SELECT * FROM app_welcome_title"
+    );
+    res.json(users.rows);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+});
 app.use((req, res, next) => {
   res.status(500).json({ message: 'Route not found'})
 });
