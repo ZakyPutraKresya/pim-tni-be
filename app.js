@@ -11,25 +11,24 @@ const path = require('path');
 const pool = require("./db");
 const multer = require("multer");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/uploads/"); // Lokasi penyimpanan file
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, Date.now() + ext); // Nama file akan menjadi timestamp saat diunggah
-  },
-});
+// const storage = multer.diskStorage({
+//   destination: (req, file, cb) => {
+//     cb(null, "public/uploads/"); // Lokasi penyimpanan file
+//   },
+//   filename: (req, file, cb) => {
+//     const ext = path.extname(file.originalname);
+//     cb(null, Date.now() + ext); // Nama file akan menjadi timestamp saat diunggah
+//   },
+// });
 
-const upload = multer({ storage });
+// const upload = multer({ storage });
 
 
 app.use(cors())
 app.use(express.json());
-app.use(bodyParser.json()); 
 
 // for parsing application/xwww-
-app.use(bodyParser.urlencoded({ extended: true })); 
+app.use(express.urlencoded({ extended: true })); 
 //form-urlencoded
 
 // for parsing multipart/form-data
@@ -60,32 +59,31 @@ app.get("/dashboard", async (req, res) => {
 });
 
 app.post("/dashboard", (req, res) => {
+  const { title, description } = req.body;
+
   // if (!req.file) {
   //   return res.status(400).json({ error: "Tidak ada file yang diunggah" });
   // }
 
-  // Dapatkan data 'author' dari FormData
-  const title = req.body.title;
-  const description = req.body.description;
+
   // const filename = "/uploads/" + req.file.filename; // Nama file yang diunggah
 
   // Update data di tabel app_slideshow
   const query = `
       UPDATE app_welcome_title
       SET title = $1,
-          description = $2,
+          description = $2
       WHERE id = 1
     `;
-
   // Ganti $1, $2, dan $3 dengan nilai yang sesuai
   pool.query(query, [title, description], (err, result) => {
     if (err) {
-      return res.status(500).json({ error: "Gagal melakukan update data " });
+      return res.status(500).json({ error: err });
     }
 
     // Jika query update berhasil, kirim respons sukses
     res.json({
-      message: "File berhasil diunggah dan informasi diupdate",
+      message: "File berhasil diunggah dan informasi diupdate"
     });
   });
 });
