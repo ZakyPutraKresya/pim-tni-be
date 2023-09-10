@@ -8,6 +8,8 @@ require('dotenv').config();
 const cors = require('cors'); // Import middleware CORS
 const port = 2900; // Port
 const path = require('path');
+const pool = require("./db");
+
 
 app.use(cors())
 app.use(express.json());
