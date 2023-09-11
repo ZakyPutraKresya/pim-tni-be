@@ -6,7 +6,7 @@ const app = express();
 const bodyParser = require('body-parser');
 require('dotenv').config();
 const cors = require('cors'); // Import middleware CORS
-const port = 2900; // Port
+const port = 8080; // Port
 const path = require('path');
 const pool = require("./db");
 const multer = require("multer");
