@@ -4,17 +4,9 @@ const pool = require("../db");
 const multer = require("multer");
 const path = require("path");
 
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, "public/uploads/"); // Lokasi penyimpanan file
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    cb(null, Date.now() + ext); // Nama file akan menjadi timestamp saat diunggah
-  },
-});
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
-const upload = multer({ storage });
 // Middleware untuk mengizinkan Express menguraikan body dalam format JSON
 router.use(express.json());
 
