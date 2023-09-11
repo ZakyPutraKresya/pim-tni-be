@@ -61,6 +61,7 @@ router.post("/upload", upload.single("file"), (req, res) => {
     // Jika query update berhasil, kirim respons sukses
     res.json({
       message: "File berhasil diunggah dan informasi diupdate di database",
+      name: filename
     });
   });
 });
