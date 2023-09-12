@@ -52,17 +52,14 @@ router.post("/upload", upload.single("file"), (req, res) => {
       WHERE id = $3
     `;
 
-  // Ganti $1, $2, dan $3 dengan nilai yang sesuai
   pool.query(slideshowQuery, [filename, author, id], (err, result) => {
     if (err) {
       return res.status(500).json({ error: "Gagal melakukan update data " });
     }
-
-    // Jika query update berhasil, kirim respons sukses
+    // if success return response
     res.json({
-      message: "File berhasil diunggah dan informasi diupdate di database",
+      message: "Successfully updated data",
       name: filename,
-      status : "OK"
     });
   });
 });

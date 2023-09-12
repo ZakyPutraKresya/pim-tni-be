@@ -11,17 +11,17 @@ const path = require('path');
 const pool = require("./db");
 const multer = require("multer");
 
-// const storage = multer.diskStorage({
-//   destination: (req, file, cb) => {
-//     cb(null, "public/uploads/"); // Lokasi penyimpanan file
-//   },
-//   filename: (req, file, cb) => {
-//     const ext = path.extname(file.originalname);
-//     cb(null, Date.now() + ext); // Nama file akan menjadi timestamp saat diunggah
-//   },
-// });
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "public/uploads/"); // Lokasi penyimpanan file
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, Date.now() + ext); // Nama file akan menjadi timestamp saat diunggah
+  },
+});
 
-// const upload = multer({ storage });
+const upload = multer({ storage });
 
 
 app.use(cors())
@@ -38,9 +38,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 const usersRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
 const imagesRoute = require('./routes/images');
+const aboutRoute = require('./routes/about');
 app.use('/users', usersRoute);
 app.use("/auth", authRoute);
-app.use("/images", imagesRoute)
+app.use("/images", imagesRoute);
+app.use("/about", aboutRoute);
 // Rute untuk akar domain
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Pusat Informasi Maritim API' });
@@ -58,34 +60,47 @@ app.get("/dashboard", async (req, res) => {
   }
 });
 
-app.post("/dashboard", (req, res) => {
-  const { title, description } = req.body;
+app.post("/dashboard", upload.single('file'), (req, res) => {
+  const title = req.body.title;
+  const description = req.body.description;
+  if (!req.file){
+    const query = `
+    UPDATE app_welcome_title
+    SET title = $1,
+        description = $2
+    WHERE id = 1
+  `;
 
-  // if (!req.file) {
-  //   return res.status(400).json({ error: "Tidak ada file yang diunggah" });
-  // }
+    pool.query(query, [title, description], (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: err });
+      }
 
-
-  // const filename = "/uploads/" + req.file.filename; // Nama file yang diunggah
-
-  // Update data di tabel app_slideshow
-  const query = `
-      UPDATE app_welcome_title
-      SET title = $1,
-          description = $2
-      WHERE id = 1
-    `;
-  // Ganti $1, $2, dan $3 dengan nilai yang sesuai
-  pool.query(query, [title, description], (err, result) => {
-    if (err) {
-      return res.status(500).json({ error: err });
-    }
-
-    // Jika query update berhasil, kirim respons sukses
-    res.json({
-      message: "File berhasil diunggah dan informasi diupdate"
+      res.json({
+        message: "Successfully updated data."
+      });
     });
-  });
+  } else {
+    const filename = "/uploads/" + req.file.filename; // Nama file yang diunggah
+
+    const query = `
+        UPDATE app_welcome_title
+        SET title = $1,
+            description = $2,
+            image = $3
+        WHERE id = 1
+      `;
+
+    pool.query(query, [title, description, filename], (err, result) => {
+      if (err) {
+        return res.status(500).json({ error: err });
+      }
+
+      res.json({
+        message: "Successfully updated data."
+      });
+    });
+  }
 });
 app.use((req, res, next) => {
   res.status(500).json({ message: 'Route not found'})
