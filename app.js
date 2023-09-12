@@ -23,14 +23,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage });
 
-const corsOptions = {
-  origin: 'https://pimtni.netlify.app/',
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 app.use(express.json());
 
