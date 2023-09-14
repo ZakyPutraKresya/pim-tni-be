@@ -39,10 +39,12 @@ const usersRoute = require('./routes/users');
 const authRoute = require('./routes/auth');
 const imagesRoute = require('./routes/images');
 const aboutRoute = require('./routes/about');
+const teamRoute = require('./routes/team');
 app.use('/users', usersRoute);
 app.use("/auth", authRoute);
 app.use("/images", imagesRoute);
 app.use("/about", aboutRoute);
+app.use("/team", teamRoute);
 // Rute untuk akar domain
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Pusat Informasi Maritim API' });
