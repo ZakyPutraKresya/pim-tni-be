@@ -59,7 +59,7 @@ router.post("/createList", upload.single("file"), (req, res) => {
       }
       // if success return response
       res.json({
-        message: "Successfully updated data",
+        message: "Successfully insert data",
       });
     });
   } else {
