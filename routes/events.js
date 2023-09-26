@@ -139,6 +139,17 @@ router.get("/", async (req, res) => {
     });
   });
 
+  router.get("/newest", async (req, res) => {
+    try {
+      const users = await pool.query(
+        "SELECT * FROM app_events ORDER BY id DESC limit 6"
+      );
+      res.json(users.rows);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Internal Server Error" });
+    }
+  })
 
 
 
