@@ -157,4 +157,28 @@ router.post("/createTitle", upload.single("file"), (req, res) => {
   }
 });
 
+router.post("/deleteEvent", (req, res) => {
+  const eventId = req.body.id; // Mendapatkan ID dari body permintaan POST
+
+  const deleteQuery = `
+    DELETE FROM app_our_team
+    WHERE id = $1
+  `;
+
+  pool.query(deleteQuery, [eventId], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: "Error deleting list" });
+    }
+    if (result.rowCount === 1) {
+      res.json({
+        message: "Our Team Item deleted successfully",
+      });
+    } else {
+      res.status(404).json({
+        error: "Our Team Item not found",
+      });
+    }
+  });
+});
+
 module.exports = router;
