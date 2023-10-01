@@ -44,6 +44,7 @@ const eventRoute = require('./routes/events');
 const galleryRoute = require('./routes/gallery');
 const profileRoute = require('./routes/profile');
 const settingsRoute = require('./routes/settings');
+const infographisRoute = require('./routes/infographis');
 app.use('/users', usersRoute);
 app.use("/auth", authRoute);
 app.use("/images", imagesRoute);
@@ -53,6 +54,7 @@ app.use("/event", eventRoute);
 app.use("/gallery", galleryRoute);
 app.use("/profile", profileRoute);
 app.use("/settings", settingsRoute);
+app.use("/infographis", infographisRoute);
 
 app.get('/', (req, res) => {
   res.status(200).json({ message: 'Pusat Informasi Maritim API' });
